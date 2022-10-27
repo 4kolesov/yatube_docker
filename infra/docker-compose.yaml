@@ -12,12 +12,11 @@ services:
       - /var/lib/postgresql/data/
     # адрес файла, где хранятся переменные окружения
     env_file:
-      - ./.env
+      - /.env
   web:
-    # build: .
+    # build: /app/
     build:
-      context: ./api_yamdb/
-      dockerfile: Dockerfile-alternate
+      context: ../api_yamdb/
     restart: always
     volumes:
       # Контейнер web будет работать с данными, хранящиеся в томе static_value, 
@@ -30,7 +29,7 @@ services:
     depends_on:
       - db
     env_file:
-      - ./.env
+      - /.env
 
   # Новый контейнер
   nginx:
